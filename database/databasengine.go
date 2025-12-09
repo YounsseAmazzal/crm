@@ -10,19 +10,13 @@ import (
 
 var db *sql.DB
 
-// Initialize database
 func Init() *sql.DB {
 	var err error
 
-	// Do NOT use :=
 	db, err = sql.Open("sqlite3", "./database/contacts.db")
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	// Do NOT close the DB here!
-	// defer db.Close()  ❌ REMOVE THIS
-
 	createTableSQL := `CREATE TABLE IF NOT EXISTS contacts (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		name TEXT NOT NULL,
